@@ -67,6 +67,18 @@ async def root():
     }
     return response
 
+@app.get("/keyword")
+async def get_keyword(q: str =""):
+    recommended_keyword = ""
+    recommended_keywords = scraper.naver_keyword(q)
+    if recommended_keywords != [] and len(recommended_keywords) == 1:
+        recommended_keyword = recommended_keywords[0]
+    response = {
+        "recommend": q if recommended_keyword == "" else recommended_keyword
+    }
+    return response
+
+
 @app.get("/tags")
 async def read_tags():
     all_tags = []
