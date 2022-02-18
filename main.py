@@ -118,15 +118,15 @@ async def read_nutrients(page_num: int = 1, page_size: int = 60, keyword: str = 
     if end >= len(filterd_nutrient):
         response["pagination"]["next"] = None
         if page_num > 1:
-            response["pagination"]["previous"] = f"/nutrients?page_num={page_num - 1}&page_size={page_size}"
+            response["pagination"]["previous"] = f"/nutrients?page_num={page_num - 1}&page_size={page_size}&keyword={keyword}"
         else :
             response["pagination"]["previous"] = None
     else :
         if page_num > 1:
-            response["pagination"]["previous"] = f"/nutrients?page_num={page_num - 1}&page_size={page_size}"
+            response["pagination"]["previous"] = f"/nutrients?page_num={page_num - 1}&page_size={page_size}&keyword={keyword}"
         else:
             response["pagination"]["previous"] = None
-        response["pagination"]["next"] = f"/nutrients?page_num={page_num + 1}&page_size={page_size}"
+        response["pagination"]["next"] = f"/nutrients?page_num={page_num + 1}&page_size={page_size}&keyword={keyword}"
 
 
     return response
